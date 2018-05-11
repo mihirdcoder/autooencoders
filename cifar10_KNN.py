@@ -39,7 +39,7 @@ def get_batches(files, prefix = '' ):
     if type(files) is list:
         result = {}
 
-
+        
         for file in files:
             data = {}
 
@@ -54,7 +54,7 @@ def get_batches(files, prefix = '' ):
                     result[label] = []
 
                 result[label].append(data[b'data'][i])
-            return sort_key(result)
+        return sort_key(result)
     elif type(files) is str:
         result = {}
         data = {}
@@ -74,6 +74,8 @@ def get_batches(files, prefix = '' ):
 
 
 def get_majority(data):
+    
+    print(data)
     max_item = None
     max_value = None
     for item in set(data):
@@ -88,7 +90,7 @@ def get_majority(data):
     return max_item
 
 
-K= 5
+K= 3
 D= edistance
 
 
@@ -97,9 +99,11 @@ images = get_batches(files, prefix= '/home/mihir/cifar-10-batches-py/data_batch_
 
 test_images = get_batches('test_batch', prefix = '/home/mihir/cifar-10-batches-py/')
 
+
 result = []
 
 for test_image_index in test_images:
+    print(test_image_index)
     cnt = 0
 
     for batch in test_images[test_image_index]:
@@ -114,3 +118,16 @@ for test_image_index in test_images:
 
 result_np = np.array(result, dtype='float32')
 print("Average : %f"%np.mean(result_np))
+'''
+cnt =0 
+for train_image_index in images:
+   
+    print(cnt)
+    cnt = 0
+    for batch in images[train_image_index]:
+        cnt = cnt+1
+print(cnt)
+print(type(images))
+'''
+    
+    
